@@ -21,12 +21,19 @@ async function findById(id: number){
   });
 
   return user;
-}
+};
+
+async function createSession(userId: number, token: string){
+  await prisma.sessions.create({
+    data: { userId, token }
+  });
+};
 
 const authRepository = {
   insert,
   findByEmail,
-  findById
+  findById,
+  createSession
 };
 
 export default authRepository;

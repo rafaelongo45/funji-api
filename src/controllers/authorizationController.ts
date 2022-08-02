@@ -1,5 +1,5 @@
 import { Users } from "@prisma/client";
-import { Request, Response } from "express";
+import { Request, response, Response } from "express";
 
 import authService from "../services/authService.js";
 
@@ -13,6 +13,11 @@ interface CreateUser {
   createdAt: Date
 }
 
+export interface UserSignin {
+  email: string
+  password: string
+}
+
 async function createUser(req: Request, res: Response){
   const body: CreateUser = req.body;
   delete body.confirmPassword
@@ -20,8 +25,15 @@ async function createUser(req: Request, res: Response){
   return res.sendStatus(201);
 };
 
+async function userSignin(req:Request, res: Response){
+  const body: UserSignin = req.body;
+  const token = await authService.signin(body);
+  return res.status(200).send(token);
+}
+
 const authorizationControler = {
-  createUser
+  createUser,
+  userSignin
 };
 
 export default authorizationControler;
