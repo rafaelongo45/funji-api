@@ -30,9 +30,9 @@ async function createKanji(req: Request, res: Response){
   return res.sendStatus(201);
 };
 
-async function getAllUserKanjis(req: Request, res: Response){
+async function getUserAllKanjis(req: Request, res: Response){
   const { userId } = res.locals;
-  const kanjis = await kanjisService.getAllUserKanjis(userId);
+  const kanjis = await kanjisService.getUserAllKanjis(userId);
   return res.status(200).send(kanjis);
 }
 
@@ -41,7 +41,7 @@ const kanjisController = {
   getInfoByName,
   getKanjisCollection,
   createKanji,
-  getAllUserKanjis
+  getUserAllKanjis
 };
 
 export default kanjisController;

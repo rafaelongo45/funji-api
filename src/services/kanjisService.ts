@@ -52,8 +52,8 @@ async function checkUserKanji(userId: number, kanjiId: number){
   }
 };
 
-async function getAllUserKanjis(userId: number){
-  const kanjis = await usersKanjisRepository.findUserKanjis(userId);
+async function getUserAllKanjis(userId: number){
+  const kanjis = await usersKanjisRepository.findUserWithKanjis(userId);
   return kanjis;
 }
 
@@ -62,7 +62,7 @@ const kanjisService = {
   getKanjiByName,
   getKanjisByCollection,
   insertKanji,
-  getAllUserKanjis
+  getUserAllKanjis
 };
 
 export default kanjisService;

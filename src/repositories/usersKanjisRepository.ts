@@ -20,27 +20,34 @@ async function findByUserIdAndKanjiId(userId: number, kanjiId: number){
   return kanjiInfo
 };
 
-async function findUserKanjis(userId: number){
-  const kanjis = await prisma.usersKanjis.findMany({
-    where: { 
-      userId
-    }, 
-    select:{
-      kanji:{
+async function findUserWithKanjis(userId: number){
+  const user = await prisma.users.findFirst({
+    where: {
+      id: userId
+    },
+    select: {
+      id: true,
+      username: true,
+      profileImage: true,
+      usersKanjis: {
         select: {
-          kanji:true
+          kanji:{
+            select: {
+              kanji: true
+            }
+          }
         }
       }
-    }
+    },
   });
 
-  return kanjis;
+  return user;
 }
 
 const usersKanjisRepository = {
   insert,
   findByUserIdAndKanjiId,
-  findUserKanjis
+  findUserWithKanjis
 };
 
 export default usersKanjisRepository;
