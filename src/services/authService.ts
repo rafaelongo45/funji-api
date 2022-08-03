@@ -8,7 +8,7 @@ import { encryptPassword } from "../utils/passwordEncrypter.js";
 import { generateToken } from "../utils/tokenGenerator.js";
 
 async function insertUser(data: Users){
-  await checkIfRegistered(data.email);
+  await checkIfRegistered(data.email, data.username);
   const encryptedPassword = await encryptPassword(data.password)
   await authRepository.insert({ ...data, password: encryptedPassword });
 };
@@ -21,10 +21,15 @@ async function signin(data: UserSignin){
   return { token };
 }
 
-async function checkIfRegistered(email: string){
-  const user = await authRepository.findByEmail(email)
-  if(user){
+async function checkIfRegistered(email: string, username: string){
+  const userByEmail = await authRepository.findByEmail(email)
+  if(userByEmail){
     throw { type: "authError", message: "E-mail already registered", code: 409 }
+  }
+
+  const userByUsername = await authRepository.findByUsername(username);
+  if(userByUsername){
+    throw { type: "authError", message: "Username already registered", code: 409 }
   }
 };
 

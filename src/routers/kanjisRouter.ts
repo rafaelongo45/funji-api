@@ -12,5 +12,7 @@ kanjisRouter.get("/kanji/:name", kanjisController.getInfoByName);
 kanjisRouter.get("/kanjis/all", kanjisController.getAllKanjis);
 kanjisRouter.get("/kanjis/:collection", validateCollection, kanjisController.getKanjisCollection);
 kanjisRouter.post("/kanji",validateSchema(kanjiSchema), validateToken, kanjisController.createKanji);
+kanjisRouter.get("/user/kanjis", validateToken, kanjisController.getAllUserKanjis);
+
 
 export default kanjisRouter;

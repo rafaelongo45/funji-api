@@ -35,14 +35,23 @@ async function findByToken(token: string){
   });
 
   return session;
-}
+};
+
+async function findByUsername(username: string){
+  const user = await prisma.users.findFirst({
+    where: { username }
+  });
+
+  return user;
+};
 
 const authRepository = {
   insert,
   findByEmail,
   findById,
   createSession,
-  findByToken
+  findByToken,
+  findByUsername
 };
 
 export default authRepository;

@@ -50,13 +50,19 @@ async function checkUserKanji(userId: number, kanjiId: number){
   if(kanjiInfo){
     throw { type: "conflictError", message: "User already has this kanji registered", code: 409 };
   }
+};
+
+async function getAllUserKanjis(userId: number){
+  const kanjis = await usersKanjisRepository.findUserKanjis(userId);
+  return kanjis;
 }
 
 const kanjisService = {
   getAllKanjis,
   getKanjiByName,
   getKanjisByCollection,
-  insertKanji
+  insertKanji,
+  getAllUserKanjis
 };
 
 export default kanjisService;

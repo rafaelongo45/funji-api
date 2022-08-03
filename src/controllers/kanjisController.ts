@@ -28,13 +28,20 @@ async function createKanji(req: Request, res: Response){
   const data: CreateKanji = req.body;
   await kanjisService.insertKanji(data, userId);
   return res.sendStatus(201);
+};
+
+async function getAllUserKanjis(req: Request, res: Response){
+  const { userId } = res.locals;
+  const kanjis = await kanjisService.getAllUserKanjis(userId);
+  return res.status(200).send(kanjis);
 }
 
 const kanjisController = {
   getAllKanjis,
   getInfoByName,
   getKanjisCollection,
-  createKanji
+  createKanji,
+  getAllUserKanjis
 };
 
 export default kanjisController;

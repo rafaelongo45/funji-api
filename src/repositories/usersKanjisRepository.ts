@@ -18,11 +18,29 @@ async function findByUserIdAndKanjiId(userId: number, kanjiId: number){
   });
 
   return kanjiInfo
+};
+
+async function findUserKanjis(userId: number){
+  const kanjis = await prisma.usersKanjis.findMany({
+    where: { 
+      userId
+    }, 
+    select:{
+      kanji:{
+        select: {
+          kanji:true
+        }
+      }
+    }
+  });
+
+  return kanjis;
 }
 
 const usersKanjisRepository = {
   insert,
-  findByUserIdAndKanjiId
+  findByUserIdAndKanjiId,
+  findUserKanjis
 };
 
 export default usersKanjisRepository;
