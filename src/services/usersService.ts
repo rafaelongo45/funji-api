@@ -14,15 +14,22 @@ async function getAllUserInfoByUsername(username: string){
   return userData;
 };
 
+async function updateProfile(userId: number, profileImage: string){
+  const user = await usersRepository.findById(userId);
+  checkIfUserExists(user);
+  await usersRepository.update(userId, profileImage)
+}
+
 function checkIfUserExists(user){
   if(!user){
-    throw { type: "notFoundError", message: "User with this username was not found", code: 404 };
+    throw { type: "notFoundError", message: "User was not found", code: 404 };
   }
-}
+};
 
 const usersService = {
   getUserByUsername,
-  getAllUserInfoByUsername
+  getAllUserInfoByUsername,
+  updateProfile
 };
 
 export default usersService;

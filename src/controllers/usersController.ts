@@ -14,9 +14,17 @@ async function getUserWithKanjis(req: Request, res: Response){
   return res.status(200).send(userInfo);
 };
 
+async function updateUserProfile(req: Request, res: Response){
+  const { userId } = res.locals;
+  const { profileImage } : { profileImage: string} = req.body;
+  await usersService.updateProfile(userId, profileImage)
+  return res.sendStatus(200);
+}
+
 const usersController = {
   getUser,
-  getUserWithKanjis
+  getUserWithKanjis,
+  updateUserProfile
 };
 
 export default usersController;
