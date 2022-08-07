@@ -27,8 +27,8 @@ async function createUser(req: Request, res: Response){
 
 async function userSignin(req:Request, res: Response){
   const body: UserSignin = req.body;
-  const token = await authService.signin(body);
-  return res.status(200).send(token);
+  const userData = await authService.signin(body);
+  return res.status(200).send(userData);
 }
 
 const authorizationControler = {

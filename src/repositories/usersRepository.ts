@@ -8,6 +8,11 @@ async function findById(id: number){
   });
 
   return user;
+};
+
+async function findAllUsers(username: string){
+  const users = await prisma.$queryRaw`SELECT id, username, "profileImage" FROM "Users" WHERE username ILIKE ${'%'+username+'%'};`;
+  return users;
 }
 
 async function findByUsername(username: string){
@@ -55,6 +60,7 @@ async function update(id: number, profileImage: string){
 }
 
 const usersRepository = {
+  findAllUsers,
   findByUsernameWithKanjis,
   findByUsername,
   findById,

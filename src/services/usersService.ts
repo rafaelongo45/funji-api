@@ -18,6 +18,11 @@ async function updateProfile(userId: number, profileImage: string){
   const user = await usersRepository.findById(userId);
   checkIfUserExists(user);
   await usersRepository.update(userId, profileImage)
+};
+
+async function getUsers(username: string){
+  const users = await usersRepository.findAllUsers(username);
+  return users;
 }
 
 function checkIfUserExists(user){
@@ -29,7 +34,8 @@ function checkIfUserExists(user){
 const usersService = {
   getUserByUsername,
   getAllUserInfoByUsername,
-  updateProfile
+  updateProfile,
+  getUsers
 };
 
 export default usersService;

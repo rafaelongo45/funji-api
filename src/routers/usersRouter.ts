@@ -9,6 +9,7 @@ const usersRouter = Router();
 
 usersRouter.get("/user/:username", usersController.getUser);
 usersRouter.get("/user/:username/kanjis", usersController.getUserWithKanjis);
+usersRouter.get("/users/:username", usersController.getAllUsers);
 usersRouter.post("/user/edit", validateSchema(updateProfile), validateToken, usersController.updateUserProfile)
 
 export default usersRouter;

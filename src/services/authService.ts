@@ -18,7 +18,12 @@ async function signin(data: UserSignin){
   await comparePassword(data.password, user.password);
   const token = await generateToken(user);
   await createSession(user, token);
-  return { token };
+  const userData = {
+    username: user.username,
+    profileImage: user.profileImage,
+    token
+  }
+  return userData;
 }
 
 async function checkIfRegistered(email: string, username: string){
