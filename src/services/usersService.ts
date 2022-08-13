@@ -35,7 +35,8 @@ const usersService = {
   getUserByUsername,
   getAllUserInfoByUsername,
   updateProfile,
-  getUsers
+  getUsers,
+  checkIfUserExists
 };
 
 export default usersService;

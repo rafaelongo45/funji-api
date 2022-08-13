@@ -51,6 +51,9 @@ async function createSession(user: Users, token: string){
 }
 
 const authService = {
+  checkIfRegistered,
+  createSession,
+  checkIfExists,
   insertUser,
   signin
 };

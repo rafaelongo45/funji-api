@@ -62,6 +62,7 @@ const kanjisService = {
   getKanjiByName,
   getKanjisByCollection,
   insertKanji,
+  checkUserKanji,
   getUserAllKanjis
 };
 
