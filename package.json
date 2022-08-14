@@ -12,7 +12,9 @@
     "test": "dotenv -e .env.test prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i",
     "test:unit": "dotenv -e .env.test cross-env NODE_OPTIONS=--experimental-vm-modules jest -- -i --coverage --collectCoverageFrom=src/services/*.ts --testPathPattern=tests/unit/*",
     "dev": "nodemon ./src/app.ts",
-    "start": "prisma migrate dev && node dist/src/app.js"
+    "prepare": "npx prisma migrate deploy",
+    "start:docker": "prisma migrate dev && node dist/src/app.js",
+    "start": "node ./dist/src/app.js"
   },
   "keywords": [],
   "author": "",
