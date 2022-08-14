@@ -1,4 +1,5 @@
 import { Users } from "@prisma/client";
+
 import prisma from "../config/database.js";
 
 async function insert(data: Users){
