@@ -1,5 +1,6 @@
 
-
+## This app utilizes the kanjiapi
+- Link: https://kanjiapi.dev/
 
 ## :rocket: Routes
 
