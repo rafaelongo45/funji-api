@@ -1,6 +1,6 @@
 import prisma from "../config/database.js";
 
-async function insert(name: string, grade: number){
+async function insert(name: string, grade: string){
   const kanji = await prisma.kanjis.create({ 
     data:{
       kanji: name,

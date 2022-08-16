@@ -33,7 +33,7 @@ model Sessions {
 model Kanjis {
   id                        Int @id @default(autoincrement())
   kanji                     String
-  grade                     Int
+  grade                     String
   createdAt                 DateTime @default(now())
   usersKanjis               UsersKanjis[]
 }

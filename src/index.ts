@@ -8,9 +8,9 @@ import { errorHandler } from "./middlewares/handleError.js";
 
 dotenv.config();
 const app = express();
-app.use(cors());
-app.use(express.json());
 
+app.use(express.json());
+app.use(cors({ origin: process.env.REACT_APP_URL }));
 app.use(router);
 app.use(errorHandler);
 

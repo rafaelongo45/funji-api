@@ -37,7 +37,7 @@ async function getKanjisByCollection(collection: string){
 async function insertKanji(data:CreateKanji, userId: number){
   const kanji = await kanjisRepository.findByName(data.kanji);
   if(!kanji){
-    const newKanji = await kanjisRepository.insert(data.kanji, parseInt(data.grade));
+    const newKanji = await kanjisRepository.insert(data.kanji, data.grade);
     await usersKanjisRepository.insert(userId, newKanji.id);
   }else{
     await checkUserKanji(userId, kanji.id);
